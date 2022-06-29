@@ -1,13 +1,13 @@
-class Album {
+class AlbumResponse {
   final int? resultCount;
   final List<Results>? results;
 
-  Album({
+  AlbumResponse({
     this.resultCount,
     this.results,
   });
 
-  Album.fromJson(Map<String, dynamic> json)
+  AlbumResponse.fromJson(Map<String, dynamic> json)
       : resultCount = json['resultCount'] as int?,
         results = (json['results'] as List?)?.map((dynamic e) => Results.fromJson(e as Map<String, dynamic>)).toList();
 
