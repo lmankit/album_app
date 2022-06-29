@@ -1,4 +1,5 @@
 import 'package:album_app/providers/album_provider.dart';
+import 'package:album_app/providers/bookmark_provider.dart';
 import 'package:album_app/providers/navigation_bar_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +12,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => NavigationBarProvider()),
         ChangeNotifierProvider(create: (_) => AlbumProvider()),
+        ChangeNotifierProvider(create: (_) => BookmarkProvider()),
       ],
       child: const MyApp(),
     ),

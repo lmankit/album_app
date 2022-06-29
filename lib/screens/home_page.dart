@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
             currentIndex: provider.currentIndex,
             items: const [
               BottomNavigationBarItem(icon: Icon(Icons.list), label: 'List'),
-              BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: 'Bookmark'),
+              BottomNavigationBarItem(icon: Icon(Icons.bookmarks), label: 'Bookmark'),
             ],
           ),
         );
