@@ -12,7 +12,7 @@ class DioManager {
 
   DioManager._internal() {
     dio = Dio(baseOptions);
-    dio.interceptors.add(LogInterceptor(responseBody: true));
+    // dio.interceptors.add(LogInterceptor(responseBody: true));
   }
 
   BaseOptions baseOptions = BaseOptions(

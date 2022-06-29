@@ -10,6 +10,8 @@ class NavigationBarProvider with ChangeNotifier {
     Bookmarks(),
   ];
 
+  var tabTitle = ['Albums', 'Bookmarks'];
+
   void changeIndex(int index) {
     currentIndex = index;
     notifyListeners();

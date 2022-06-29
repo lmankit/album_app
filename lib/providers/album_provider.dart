@@ -1,20 +1,20 @@
-import 'package:album_app/models/album.dart';
+import 'package:album_app/models/album_response.dart';
 import 'package:album_app/providers/base_provider.dart';
 
 class AlbumProvider extends BaseProvider {
-  List<AlbumResponse> albumList = [];
+  List<Results> albumList = [];
   AlbumResponse? albumResponse = AlbumResponse();
 
   AlbumProvider() {
     getAlbumData();
   }
 
-  void getAlbumData() {
-    print('Get album data');
+  void getAlbumData() async {
     setStatus(Status.loading);
     apiProvider.fetchAlbum(
       onSuccess: (response) {
-        albumResponse = albumResponse;
+        albumResponse = response;
+        albumList = albumResponse!.results!;
         setStatus(Status.success);
       },
       onError: (error) {

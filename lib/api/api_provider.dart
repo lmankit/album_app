@@ -1,11 +1,12 @@
-import 'package:album_app/models/album.dart';
+import 'dart:convert';
+
+import 'package:album_app/models/album_response.dart';
 import 'package:dio/dio.dart';
 
 import 'dio_manager.dart';
 
 class ApiProvider {
   static ApiProvider instance = ApiProvider._internal();
-  late ApiProvider apiProvider;
 
   factory ApiProvider() {
     return instance;
@@ -18,7 +19,12 @@ class ApiProvider {
   void fetchAlbum({
     required Function(AlbumResponse?) onSuccess,
     required Function(dynamic) onError,
-  }) {
-    dio.get('').then((value) => onSuccess(AlbumResponse.fromJson(value.data))).catchError((error) => onError(error));
+  }) async {
+    try {
+      var response = await dio.get('');
+      onSuccess(AlbumResponse.fromJson(jsonDecode(response.data)));
+    } on DioError catch (e) {
+      onError(e);
+    }
   }
 }

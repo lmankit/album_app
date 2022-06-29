@@ -8,13 +8,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var provider = context.watch<NavigationBarProvider>();
+    NavigationBarProvider provider = context.watch<NavigationBarProvider>();
     return Consumer<AlbumProvider>(
       builder: (context, viewModel, child) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Home'),
+            title: Text(provider.tabTitle[provider.currentIndex]),
           ),
+          backgroundColor: Colors.black54,
           body: provider.currentTab[provider.currentIndex],
           bottomNavigationBar: BottomNavigationBar(
             onTap: (index) => provider.changeIndex(index),
