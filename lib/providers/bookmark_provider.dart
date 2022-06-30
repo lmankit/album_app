@@ -13,6 +13,7 @@ class BookmarkProvider extends BaseProvider {
   }
 
   void getBookmark() {
+    if (prefs.bookmarks.isEmpty) return;
     var decoded = jsonDecode(prefs.bookmarks);
     List<Results> results = List<Results>.from(decoded.map((e) => Results.fromJson(e)));
     bookmarks = results;
@@ -30,7 +31,6 @@ class BookmarkProvider extends BaseProvider {
   }
 
   void remove(int index) {
-    print('remove at $index');
     bookmarks.removeAt(index);
     notifyListeners();
   }

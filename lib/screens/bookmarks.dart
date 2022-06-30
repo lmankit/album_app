@@ -5,7 +5,6 @@ import 'package:flutter_swipe_action_cell/core/cell.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
 import 'package:provider/provider.dart';
 
-import '../models/album_response.dart';
 import '../widgets/album_item.dart';
 import '../widgets/custom_separator.dart';
 

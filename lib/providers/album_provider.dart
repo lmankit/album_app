@@ -41,7 +41,6 @@ class AlbumProvider extends BaseProvider {
     } else {
       haveSearchKey = false;
     }
-    print(haveSearchKey);
     notifyListeners();
   }
 }
