@@ -38,6 +38,7 @@ dependencies:
   dio: ^4.0.6
   shimmer: ^2.0.0
   shared_preferences: ^2.0.15
+  flutter_swipe_action_cell: ^2.2.3
 
 dev_dependencies:
   flutter_test:

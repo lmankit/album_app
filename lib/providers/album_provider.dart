@@ -3,7 +3,10 @@ import 'package:album_app/providers/base_provider.dart';
 
 class AlbumProvider extends BaseProvider {
   List<Results> albumList = [];
+  List<Results> searchList = [];
   AlbumResponse? albumResponse = AlbumResponse();
+
+  bool haveSearchKey = false;
 
   AlbumProvider() {
     getAlbumData();
@@ -22,5 +25,23 @@ class AlbumProvider extends BaseProvider {
         setStatus(Status.error);
       },
     );
+  }
+
+  void search(String value) {
+    searchList.clear();
+    if (value.isNotEmpty) {
+      haveSearchKey = true;
+      String inputString = value.toLowerCase().trim();
+      for (var e in albumList) {
+        String albumName = e.collectionName!.replaceAll(' ', '').toLowerCase().trim();
+        if (albumName.contains(inputString)) {
+          searchList.add(e);
+        }
+      }
+    } else {
+      haveSearchKey = false;
+    }
+    print(haveSearchKey);
+    notifyListeners();
   }
 }

@@ -1,6 +1,8 @@
 import 'package:album_app/common/style.dart';
 import 'package:album_app/providers/bookmark_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_swipe_action_cell/core/cell.dart';
+import 'package:flutter_swipe_action_cell/core/controller.dart';
 import 'package:provider/provider.dart';
 
 import '../models/album_response.dart';
@@ -8,30 +10,47 @@ import '../widgets/album_item.dart';
 import '../widgets/custom_separator.dart';
 
 class Bookmarks extends StatelessWidget {
-  const Bookmarks({Key? key}) : super(key: key);
+  Bookmarks({Key? key}) : super(key: key);
+
+  final SwipeActionController swipeActionController = SwipeActionController();
 
   @override
   Widget build(BuildContext context) {
     BookmarkProvider bookmarkProvider = context.watch<BookmarkProvider>();
-    return Padding(
-      padding: EdgeInsets.only(top: 20),
-      child: Consumer<BookmarkProvider>(
-        builder: (context, viewModel, child) {
-          if (bookmarkProvider.bookmarks.isEmpty) {
-            return noBookmarkMessage();
-          }
-          return buildAlbumList(bookmarkProvider.bookmarks);
-        },
-      ),
+    return Consumer<BookmarkProvider>(
+      builder: (context, viewModel, child) {
+        if (bookmarkProvider.bookmarks.isEmpty) {
+          return noBookmarkMessage();
+        }
+        return buildAlbumList(bookmarkProvider);
+      },
     );
   }
 
-  Widget buildAlbumList(List<Results> albumList) {
+  Widget buildAlbumList(BookmarkProvider bookmarkProvider) {
     return ListView.separated(
-      itemCount: albumList.length,
-      itemBuilder: (_, index) => AlbumItem(
-        album: albumList[index],
-        showBookmark: false,
+      padding: EdgeInsets.only(top: 20),
+      itemCount: bookmarkProvider.bookmarks.length,
+      itemBuilder: (_, index) => SwipeActionCell(
+        backgroundColor: Colors.black87,
+        key: ValueKey(index),
+        index: index,
+        controller: swipeActionController,
+        child: AlbumItem(
+          album: bookmarkProvider.bookmarks[index],
+          showBookmark: false,
+        ),
+        trailingActions: <SwipeAction>[
+          SwipeAction(
+              backgroundRadius: 12,
+              widthSpace: 60,
+              icon: Icon(Icons.delete_outline, color: Colors.white, size: 25),
+              color: Colors.red,
+              onTap: (CompletionHandler handler) {
+                bookmarkProvider.remove(index);
+                swipeActionController.closeAllOpenCell();
+              }),
+        ],
       ),
       separatorBuilder: (_, index) => CustomSeparator(),
     );

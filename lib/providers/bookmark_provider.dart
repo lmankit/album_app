@@ -29,6 +29,12 @@ class BookmarkProvider extends BaseProvider {
     notifyListeners();
   }
 
+  void remove(int index) {
+    print('remove at $index');
+    bookmarks.removeAt(index);
+    notifyListeners();
+  }
+
   bool checkBookmark(Results album) {
     var id = album.collectionId;
     for (var e in bookmarks) {
