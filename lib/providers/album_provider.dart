@@ -31,7 +31,7 @@ class AlbumProvider extends BaseProvider {
     searchList.clear();
     if (value.isNotEmpty) {
       haveSearchKey = true;
-      String inputString = value.toLowerCase().trim();
+      String inputString = value.replaceAll(' ', '').toLowerCase().trim();
       for (var e in albumList) {
         String albumName = e.collectionName!.replaceAll(' ', '').toLowerCase().trim();
         if (albumName.contains(inputString)) {
