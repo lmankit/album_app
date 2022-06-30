@@ -54,7 +54,7 @@ class AlbumItem extends StatelessWidget {
                 },
                 icon: Icon(
                   Icons.star,
-                  color: bookmarkProvider.bookmarks.contains(album) ? Colors.yellow : Colors.grey,
+                  color: bookmarkProvider.checkBookmark(album) ? Colors.yellow : Colors.grey,
                 ),
               ),
             ),

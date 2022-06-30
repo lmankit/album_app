@@ -28,7 +28,6 @@ class Bookmarks extends StatelessWidget {
 
   Widget buildAlbumList(List<Results> albumList) {
     return ListView.separated(
-      shrinkWrap: true,
       itemCount: albumList.length,
       itemBuilder: (_, index) => AlbumItem(
         album: albumList[index],

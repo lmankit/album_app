@@ -6,10 +6,10 @@ import 'package:dio/dio.dart';
 import 'dio_manager.dart';
 
 class ApiProvider {
-  static ApiProvider instance = ApiProvider._internal();
+  static final ApiProvider _instance = ApiProvider._internal();
 
   factory ApiProvider() {
-    return instance;
+    return _instance;
   }
 
   ApiProvider._internal();

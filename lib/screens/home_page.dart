@@ -3,6 +3,8 @@ import 'package:album_app/providers/navigation_bar_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../utils/preference_utils.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -18,11 +20,13 @@ class HomePage extends StatelessWidget {
           backgroundColor: Colors.black54,
           body: provider.currentTab[provider.currentIndex],
           bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: Colors.grey.withOpacity(0.2),
+            unselectedItemColor: Colors.grey,
             onTap: (index) => provider.changeIndex(index),
             currentIndex: provider.currentIndex,
             items: const [
-              BottomNavigationBarItem(icon: Icon(Icons.list), label: 'List'),
-              BottomNavigationBarItem(icon: Icon(Icons.bookmarks), label: 'Bookmark'),
+              BottomNavigationBarItem(icon: Icon(Icons.album), label: 'Albums'),
+              BottomNavigationBarItem(icon: Icon(Icons.bookmarks), label: 'Bookmarks'),
             ],
           ),
         );
