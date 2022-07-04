@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,10 +23,21 @@ class AlbumItem extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8.0),
         child: Row(
           children: [
-            Image.network(album.artworkUrl60!),
+            CachedNetworkImage(
+              width: 60,
+              imageUrl: album.artworkUrl60!,
+              placeholder: (context, url) => Center(
+                child: SizedBox(
+                  height: 30,
+                  width: 30,
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+              errorWidget: (_, url, error) => Icon(Icons.error_outline, color: Colors.white),
+            ),
             SizedBox(width: 10),
             Expanded(
               child: Column(

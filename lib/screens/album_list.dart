@@ -23,6 +23,13 @@ class AlbumList extends StatelessWidget {
       builder: (context, viewModel, child) {
         if (albumProvider.status == Status.loading) {
           return buildLoadingWidget();
+        } else if (albumProvider.status == Status.error) {
+          return Center(
+            child: ElevatedButton(
+              child: Text('Retry'),
+              onPressed: () => albumProvider.getAlbumData(),
+            ),
+          );
         }
         return Column(
           children: [

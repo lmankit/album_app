@@ -21,8 +21,9 @@ class AlbumProvider extends BaseProvider {
         setStatus(Status.success);
       },
       onError: (error) {
-        errorMessage = "Album not found";
+        errorMessage = "No Internet connection";
         setStatus(Status.error);
+        setErrorMessage(errorMessage!);
       },
     );
   }
